@@ -3,11 +3,11 @@
     Represents an indivual person. Contains their attributes, traits, objectives, and relationships with other agents.
     Agents all have a current location, a morality, and a bias towards order or chaos.
 '''
-from lib.attributes import Attributes
+import attributes as atr
 import trait as ts
 import capability as cap
 import objective as obj
-import relationship as rel
+import relations as rel
 import family as fm
 import attributes as atr
 
