@@ -3,6 +3,7 @@ Relation
     Represents how the agent feels towards another agent. Can be a driving force for emotional objectives that aren't derived from traits
 '''
 import agent as ag
+import objective as obj
 
 class Relation:
     owner_agent = None
@@ -16,3 +17,6 @@ class Relation:
         self.relation = max(min(self.relation + amount, 100), 0)
         if self.relation < 40: 
             self.is_romantic = False
+
+    def GenerateObjective(self):
+        pass
