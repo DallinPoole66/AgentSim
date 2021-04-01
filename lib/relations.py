@@ -12,6 +12,10 @@ class Relation:
     relation = 50
     # is it a romantic relation from the Owner -> Target? Doesn't imply recipricated feelings
     is_romantic = False
+    display_text = "Relationship Text"
+
+    def __init__(self, text):
+        self.display_text = text
 
     def AdjustRelation(self, amount):
         self.relation = max(min(self.relation + amount, 100), 0)
@@ -20,3 +24,6 @@ class Relation:
 
     def GenerateObjective(self):
         pass
+
+    def display(self):
+        return self.display_text
