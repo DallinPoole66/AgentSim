@@ -1,5 +1,6 @@
 import family as fam
 import agent
+import task
 
 
 Montagues = fam.Family(familyName="Montague")
@@ -40,7 +41,9 @@ ma_cap.AddChild(juliet)
 pa_mont.GetListOfObjectives()
 romeo.display()
 pa_mont.display()
-romeo.attributes.education += 1
+
+ed = task.task_increase_atribute(pa_mont, romeo, "education")
+ed.DoTask()
+
 pa_mont.CheckForCompletedObjectives()
-pa_mont.GetListOfObjectives()
-pa_mont.CheckForCompletedObjectives()
+pa_mont.display()

@@ -43,11 +43,22 @@ class Agent():
     # Traits
     traits = None
     # Attributes
-    attributes = atr.Attributes()
-    # Morality, 0 = Evil, 100 = Good
-    morality = 50
-    # lawful, 0 = Chaotic, 100 = Lawful
-    lawful = 80
+    attributes = {
+        "vitality" :10,
+        "strength" : 10,
+        "inteligence" : 10,
+        "education" : 0,
+        "charisma" : 10,
+        "perception" : 10,
+        "deception" : 10,
+        "stealth" : 10,
+        "attack_physical" : 10,
+        "attack_magical" : 0,
+        "defense_physical" : 10,
+        "defense_magical" : 10,
+        "morality":50,
+        "lawful":80
+    }
 
     parents = None
     children = None
@@ -77,16 +88,13 @@ class Agent():
     def AddTrait(self, new_trait):
         self.traits.append(new_trait)
 
-    def __init__(self, first_name = "Default",location = None, age = 18, traits = [], attributes = atr.Attributes(), morality = 50, lawful = 50, gender=Gender.Female, orientation=SexOrientation.Straight):
+    def __init__(self, first_name = "Default",location = None, age = 18, traits = [], gender=Gender.Female, orientation=SexOrientation.Straight):
         self.name = first_name
         self.location = location
         self.age = age
         self.gender = gender
         self.sex_orientation = orientation
         self.traits = traits
-        self.attributes = attributes
-        self.morality = morality
-        self.lawful = lawful
         self.children = list()
         self.siblings = list()
         self.parents = list()
@@ -135,3 +143,6 @@ class Agent():
         
         for i in completed:
             self.objectives.remove(i)
+
+    def IncreaseAtribute(self):
+        pass

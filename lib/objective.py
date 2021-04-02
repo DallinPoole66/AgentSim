@@ -73,10 +73,10 @@ class educate_child(increase_atribute):
         return "Educate Child: " + self.target_agent.GetFullName()
 
     def SetupObjective(self):
-        self.current_attribute = copy.deepcopy(self.target_agent.attributes.education)
+        self.current_attribute = copy.deepcopy(self.target_agent.attributes["education"])
 
     def CheckIfCompleted(self):
-        if (self.target_agent.attributes.education > self.current_attribute):
+        if (self.target_agent.attributes["education"] > self.current_attribute):
             print(self.target_agent.GetFullName() + "'s Education Increased!" )
             self.CompleteObjective()
             return True
