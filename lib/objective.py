@@ -5,6 +5,8 @@
     interact with othert Agents and more.
     Objectives can be location based, status based, or intrinsic to the Agent.
 '''
+import copy
+import agent
 
 class Objective:
     # Print name of objective
@@ -48,11 +50,35 @@ class Objective:
     def CompleteObjective(self):
         pass
 
+    def SetupObjective(self):
+        pass
 
 
-class educate_child(Objective):
-    def __init__(self, child):
-        self.target_agent = child
+class increase_atribute(Objective):
+    current_attribute = 0
+
+    def CheckIfCompleted(self):
+        pass
+
+    def __init__(self, target):
+        self.target_agent = target
+        self.SetupObjective()
+
+
+
+
+class educate_child(increase_atribute):
 
     def GetDisplayName(self):
         return "Educate Child: " + self.target_agent.GetFullName()
+
+    def SetupObjective(self):
+        self.current_attribute = copy.deepcopy(self.target_agent.attributes.education)
+
+    def CheckIfCompleted(self):
+        if (self.target_agent.attributes.education > self.current_attribute):
+            print(self.target_agent.GetFullName() + "'s Education Increased!" )
+            self.CompleteObjective()
+            return True
+        else:
+            return False

@@ -126,3 +126,12 @@ class Agent():
             possible_objectives += trait.GenerateObjectives()
         self.objectives = possible_objectives
         return possible_objectives
+
+    def CheckForCompletedObjectives(self):
+        completed = list()
+        for objective in self.objectives:
+            if objective.CheckIfCompleted():
+                completed.append(objective)
+        
+        for i in completed:
+            self.objectives.remove(i)

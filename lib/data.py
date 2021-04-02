@@ -40,3 +40,7 @@ ma_cap.AddChild(juliet)
 pa_mont.GetListOfObjectives()
 romeo.display()
 pa_mont.display()
+romeo.attributes.education += 1
+pa_mont.CheckForCompletedObjectives()
+pa_mont.GetListOfObjectives()
+pa_mont.CheckForCompletedObjectives()
