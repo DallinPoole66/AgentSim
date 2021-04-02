@@ -24,8 +24,10 @@ class Trait:
         self.owner_agent = owner
         self.target_agent = target
 
-    def GenerateObjective(self):
-        pass
+    def GenerateObjectives(self):
+        objectives = list()
+
+        return objectives
 
     def GetDisplayName(self):
         return "empty trait"
@@ -35,3 +37,34 @@ class Trait:
 
     def GetCapabilities(self):
         return self.capabilities
+
+
+class trait_child_of_agent(Trait):
+    def __init__(self, child_agent, parent_agent):
+        self.owner_agent = child_agent
+        self.target_agent = parent_agent
+
+    def GetDisplayName(self):
+        return "Child of " + self.target_agent.GetFullName()
+
+class trait_parent_of_agent(Trait):
+    def __init__(self, child_agent, parent_agent):
+        self.owner_agent = parent_agent
+        self.target_agent = child_agent
+        
+    def GetDisplayName(self):
+        return "Parent of " + self.target_agent.GetFullName()
+
+    def GenerateObjectives(self):
+        objectives = list()
+        objectives.append(obj.educate_child(self.target_agent))
+
+        return objectives
+
+class trait_married_to_agent(Trait):
+    def __init__(self, agent, spouse):
+        self.owner_agent = agent
+        self.target_agent = spouse
+        
+    def GetDisplayName(self):        
+        return "Spouse of " + self.target_agent.GetFullName()

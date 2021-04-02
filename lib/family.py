@@ -4,27 +4,12 @@ Family
 '''
 import agent
 import relations as rel
+import trait as ts
 
-class parent_of (rel.Relation):
-    def display(self): 
-        return "Parent of " + self.target_agent.GetFullName()
-
-class child_of (rel.Relation):
-    def display(self): 
-        return "Child of " + self.target_agent.GetFullName()
-
-class spouse_of (rel.Relation):
-    def display(self): 
-        return "Spouse of " + self.target_agent.GetFullName()
-    def __init__(self, owner, target):
-        self.owner_agent = owner
-        self.target_agent = target
 
 def MarryAgents(agent_a, agent_b):
-    rel_a = spouse_of(agent_a, agent_b)
-    agent_a.AddRelation(rel_a)
-    rel_b = spouse_of(agent_b, agent_a)
-    agent_b.AddRelation(rel_b)
+    agent_a.AddTrait(ts.trait_married_to_agent(agent_a, agent_b))
+    agent_b.AddTrait(ts.trait_married_to_agent(agent_b, agent_a))
 
 FAMILIES = list()
 

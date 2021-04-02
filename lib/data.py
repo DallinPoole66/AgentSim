@@ -37,6 +37,6 @@ fam.MarryAgents(pa_cap, ma_cap)
 pa_cap.AddChild(juliet)
 ma_cap.AddChild(juliet)
 
-
+pa_mont.GetListOfObjectives()
 romeo.display()
 pa_mont.display()

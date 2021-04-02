@@ -41,7 +41,7 @@ class Agent():
     # Sexual Orientation
     sex_orientation = SexOrientation.Straight
     # Traits
-    traits = []
+    traits = None
     # Attributes
     attributes = atr.Attributes()
     # Morality, 0 = Evil, 100 = Good
@@ -53,18 +53,15 @@ class Agent():
     children = None
     siblings = None
     relations = None
+    objectives = None
     
 
     def AddParent(self, parent_agent):
         self.parents.append(parent_agent)
-        relation = fm.child_of("")
-        relation.target_agent = parent_agent
-        relation.owner_agent = self
-        self.AddRelation(relation)
+        self.AddTrait(ts.trait_child_of_agent(self, parent_agent))
 
     def AddSibling(self, sibling_agent):
         self.siblings.append(sibling_agent)
-        self.AddRelation(rel.Relation("Sibling of Agent"))
 
     def AddChild(self, child_agent):
         for sibling in self.children:
@@ -72,13 +69,13 @@ class Agent():
             child_agent.AddSibling(sibling)
         child_agent.AddParent(self)
         self.children.append(child_agent)
-        relation = fm.parent_of("")
-        relation.target_agent = child_agent
-        relation.owner_agent = self
-        self.AddRelation(relation)
+        self.AddTrait(ts.trait_parent_of_agent(parent_agent= self,child_agent=child_agent))
 
     def AddRelation(self, relation):
         self.relations.append(relation)
+
+    def AddTrait(self, new_trait):
+        self.traits.append(new_trait)
 
     def __init__(self, first_name = "Default",location = None, age = 18, traits = [], attributes = atr.Attributes(), morality = 50, lawful = 50, gender=Gender.Female, orientation=SexOrientation.Straight):
         self.name = first_name
@@ -94,6 +91,8 @@ class Agent():
         self.siblings = list()
         self.parents = list()
         self.relations = list()
+        self.traits = list()
+        self.objectives = list()
 
     def GetFullName(self):
         return self.name + " " + fm.FAMILIES[self.family].name
@@ -113,4 +112,17 @@ class Agent():
         print("Relations:")
         for relation in self.relations:
             print("\t" + relation.display())
+        print("Traits:")
+        for trait in self.traits:
+            print("\t" + trait.GetDisplayName())
+        print("Objectives:")
+        for objective in self.objectives:
+            print("\t" + objective.GetDisplayName())
         print("")
+
+    def GetListOfObjectives(self):
+        possible_objectives = list()
+        for trait in self.traits:
+            possible_objectives += trait.GenerateObjectives()
+        self.objectives = possible_objectives
+        return possible_objectives

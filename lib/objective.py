@@ -48,3 +48,11 @@ class Objective:
     def CompleteObjective(self):
         pass
 
+
+
+class educate_child(Objective):
+    def __init__(self, child):
+        self.target_agent = child
+
+    def GetDisplayName(self):
+        return "Educate Child: " + self.target_agent.GetFullName()
