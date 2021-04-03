@@ -1,8 +1,9 @@
 import family as fam
 import agent
 import task
-
-
+import names
+import random
+'''
 Montagues = fam.Family(familyName="Montague")
 Capulets = fam.Family(familyName="Capulet")
 
@@ -47,3 +48,70 @@ ed.DoTask()
 
 pa_mont.CheckForCompletedObjectives()
 pa_mont.display()
+
+'''
+AGENTS = list()
+
+
+for x in range(13):
+    name = names.LASTNAMES[ random.randrange(x * int(88799 / 13), (x + 1) * int(88799 / 13))]
+    new_family = fam.Family(name)
+    fam.AddFamily(new_family)
+    father = agent.Agent(names.MALE_NAMES[random.randrange(1219)] )
+    mother = agent.Agent(names.FEMALE_NAMES[random.randrange(4275)] )
+    fam.AddFamilyMember(new_family.index, father)
+    fam.AddFamilyMember(new_family.index, mother)
+    fam.MarryAgents(father, mother)
+    for c in range(random.randrange(9)):
+        if (random.randrange(1) == 1):
+            kid = agent.Agent(names.MALE_NAMES[random.randrange(1219)])
+        else:
+            kid = agent.Agent(names.FEMALE_NAMES[random.randrange(4275)])
+        fam.AddFamilyMember(new_family.index, kid)
+        father.AddChild(kid)
+        mother.AddChild(kid)
+
+    father.display()
+            
+for x in range(random.randrange(26, 39)):
+    name = names.LASTNAMES[ random.randrange(88799)]
+    new_family = fam.Family(name)
+    fam.AddFamily(new_family)
+    father = agent.Agent(names.MALE_NAMES[random.randrange(1219)] )
+    mother = agent.Agent(names.FEMALE_NAMES[random.randrange(4275)] )
+    fam.AddFamilyMember(new_family.index, father)
+    fam.AddFamilyMember(new_family.index, mother)
+    fam.MarryAgents(father, mother)
+    for c in range(random.randrange(9)):
+        if (random.randrange(1) == 1):
+            kid = agent.Agent(names.MALE_NAMES[random.randrange(1219)])
+        else:
+            kid = agent.Agent(names.FEMALE_NAMES[random.randrange(4275)])
+        fam.AddFamilyMember(new_family.index, kid)
+        father.AddChild(kid)
+        mother.AddChild(kid)
+
+    father.display()
+
+for x in range(random.randrange(45, 70)):
+    name = names.LASTNAMES[ random.randrange(88799)]
+    new_family = fam.Family(name)
+    fam.AddFamily(new_family)
+    age_offset = random.randrange(5)
+    father = agent.Agent(names.MALE_NAMES[random.randrange(1219)],age=random.randrange(15 + age_offset, 21 + age_offset),gender=agent.Gender.Male)
+    mother = agent.Agent(names.FEMALE_NAMES[random.randrange(4275)],age=random.randrange(15 + age_offset, 21 + age_offset),gender=agent.Gender.Female )
+    fam.AddFamilyMember(new_family.index, father)
+    fam.AddFamilyMember(new_family.index, mother)
+    fam.MarryAgents(father, mother)
+    for c in range(random.randrange(9)):
+        father.age += 2
+        mother.age += 2
+        if (random.randrange(1) == 1):
+            kid = agent.Agent(names.MALE_NAMES[random.randrange(1219)],gender=agent.Gender.Male, age= (c+1) * 2 + age_offset)
+        else:
+            kid = agent.Agent(names.FEMALE_NAMES[random.randrange(4275)],gender=agent.Gender.Female, age= (c+1) * 2 + age_offset)
+        fam.AddFamilyMember(new_family.index, kid)
+        father.AddChild(kid)
+        mother.AddChild(kid)
+
+    father.display()

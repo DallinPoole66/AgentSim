@@ -13,7 +13,7 @@ import family as fm
 import attributes as atr
 import enum
 import relations as rel
-
+import random
 class Gender(enum.Enum):
     Female = 0
     Male = 1
@@ -93,7 +93,15 @@ class Agent():
         self.location = location
         self.age = age
         self.gender = gender
-        self.sex_orientation = orientation
+        if random.randrange(100) < 5:
+            print("*********************************************************************************************")
+            if random.randint(0, 1):
+                self.sex_orientation = SexOrientation.Bi
+            else:
+                self.sex_orientation = SexOrientation.Gay
+        else:
+            self.sex_orientation = orientation
+
         self.traits = traits
         self.children = list()
         self.siblings = list()
@@ -106,7 +114,7 @@ class Agent():
         return self.name + " " + fm.FAMILIES[self.family].name
 
     def display(self):
-        print(self.name, fm.FAMILIES[self.family].name)
+        print(self.name, fm.FAMILIES[self.family].name, self.age,self.sex_orientation, self.gender)
         print("")
         print("Parents:")
         for p in self.parents:
