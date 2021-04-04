@@ -14,6 +14,7 @@ import attributes as atr
 import enum
 import relations as rel
 import random
+
 class Gender(enum.Enum):
     Female = 0
     Male = 1
@@ -30,6 +31,7 @@ class SexOrientation(enum.Enum):
 class Agent():
     # First Name
     name = "Agent Name"
+    alive = None
     # Family
     family = None
     # Current location
@@ -93,6 +95,7 @@ class Agent():
         self.location = location
         self.age = age
         self.gender = gender
+        self.alive = True
         if random.randrange(100) < 5:
             print("*********************************************************************************************")
             if random.randint(0, 1):

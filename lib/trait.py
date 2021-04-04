@@ -68,3 +68,13 @@ class trait_married_to_agent(Trait):
         
     def GetDisplayName(self):        
         return "Spouse of " + self.target_agent.GetFullName()
+
+class trait_teacher(Trait):
+    capabilities = [cap.capability_improve_education]
+
+    def __init__(self, agent):
+        self.owner_agent = agent
+    
+    def GetDisplayName(self):
+        return "Teacher"
+    
